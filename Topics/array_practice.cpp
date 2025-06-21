@@ -1,3 +1,6 @@
+
+//✅ Find the sum of all array elements
+
 // #include<iostream>
 // using namespace std;
 
@@ -15,6 +18,7 @@
 // --------------------------------------------------------------------------------
 
 
+//✅ Find the number of elements in the array
 
 // #include<iostream>
 // using namespace std;
@@ -55,7 +59,7 @@
 // ------------------------------------------------------------------------------
 
 
-
+//✅ Find the average of array elements
 
 // #include <iostream>
 // using namespace std;
@@ -112,7 +116,7 @@
 
 // -- So sizeof(arr) gives size of a pointer (typically 4 or 8 bytes), not the array.
 
-// ✅ Correct way in function: Pass the size separately:
+//  Correct way in function: Pass the size separately:
 
 // void myFunc(int arr[], int size) {
 //     cout << "Size is: " << size;
@@ -134,6 +138,7 @@
 
 
 
+//✅ Find the maximum and minimum element in the array
 
 
 
@@ -196,6 +201,7 @@
 //--------------------------------------------------------------------------------
 
 
+//✅ Count occurrences of a given element
 
 
 // #include<iostream>
@@ -221,6 +227,9 @@
 
 //--------------------------------------------------------------------------------
 
+
+
+//✅ Reverse the entire array
 
 
 // #include<iostream>
@@ -299,8 +308,250 @@
 //--------------------------------------------------------------------------------
 
 
+//✅ Print the even and odd elements
+
+
+// #include<iostream>
+// using namespace std;
+
+// int main(){
+//     int arr[]={1,2,3,4,5};
+//     int size=sizeof(arr)/sizeof(arr[0]);
+
+//  cout<<"The even elements are :";
+//     for(int i=0; i<size; i++){
+//         if(arr[i]%2==0){
+//             cout<<arr[i]<<" ";
+//         }
+//     }
+//  cout<<"\n The odd elements are :";
+//     for(int i=0; i<size; i++){
+//         if(arr[i]%2!=0){
+//             cout<<arr[i]<<" ";
+//         }
+//     }
+
+// }
+   
 
 
 
 
 
+//--------------------------------------------------------------------------------
+
+
+//✅ Check if duplicates exist in the array
+
+
+
+// //Use early return, i.e return 0 after you need to stop further execution, otherwise "No duplicate element exist" is still printed always❌ 
+
+
+
+// #include<iostream>
+// using namespace std;
+
+// int main(){
+//     int arr[]={1,2,3,4,5,6,2,3,0};
+//     int size=sizeof(arr)/sizeof(arr[0]);
+
+//     int element = 0;
+//     int count=0;
+
+//     for(int i=0; i<size; i++)
+//     {
+//         if(arr[i]==element){
+//             count++;
+//             if(count>1)
+//             {
+//                cout<<"Duplicate element exist";
+//                return 0;
+//             }
+//         }
+       
+//     }
+//      cout<<"No duplicate element exist";
+//      return 0;
+// }
+   
+
+
+
+
+//--------------------------------------------------------------------------------
+
+// // or can Use a flag
+
+
+// #include<iostream>
+// using namespace std;
+
+// int main() {
+//     int arr[] = {1, 2, 3, 4, 5, 6, 2, 3, 0};
+//     int size = sizeof(arr) / sizeof(arr[0]);
+
+//     int element = 3;
+//     int count = 0;
+//     bool found = false;
+
+//     for (int i = 0; i < size; i++) {
+//         if (arr[i] == element) {
+//             count++;
+//             if (count > 1) {
+//                 cout << "Duplicate element exists" << endl;
+//                 found = true;
+//                 break;
+//             }
+//         }
+//     }
+
+//     if (!found) {
+//         cout << "No duplicate element exists" << endl;
+//     }
+
+//     return 0;
+// }
+
+
+
+
+
+
+//--------------------------------------------------------------------------------
+
+//✅ Find the second largest element in the array
+
+
+// #include<iostream>
+// using namespace std;
+
+// int main() {
+//     int arr[] = {9,1, 2, 4, 6, 6, 5, 0};
+//     int size = sizeof(arr) / sizeof(arr[0]);
+
+//     if (size < 2) {
+//         cout << "Array must have at least two elements." << endl;
+//         return 0;
+//     }
+
+//     int max, smax;
+
+//     // Initialize max and smax properly
+//     if (arr[0] > arr[1]) {
+//         max = arr[0];
+//         smax = arr[1];
+//     } else {
+//         max = arr[1];
+//         smax = arr[0];
+//     }
+
+//     // Traverse from index 2
+//     for (int i = 2; i < size; i++) {
+//         if (arr[i] > max) {
+//             smax = max;
+//             max = arr[i];
+//         } else if (arr[i] > smax && arr[i] != max) {
+//             smax = arr[i];
+//         }
+//     }
+
+//     cout << "Maximum Element: " << max << endl;
+//     cout << "Second Maximum Element: " << smax << endl;
+
+//     return 0;
+// }
+
+
+
+
+// --------------------------------------------------------------------------------
+
+
+// If You initialize smax = arr[0], i.e., the same as max. This can lead to wrong results when:
+
+// --The first element is the maximum,
+
+// --Or the second maximum is smaller than the first element.
+
+
+// Edge Cases Handled:
+// -------------------
+
+// --Works even if the first element is the max.
+
+// --Avoids reporting same max twice as second max.
+
+// --Assumes at least two distinct elements.
+
+
+
+
+//-----------------------------------------------------------------------------------
+
+
+
+
+
+// But for this input
+// int arr[] = {9, 9, 1, 2, 4, 6, 6, 5, 0};
+
+// is giving output
+
+// Maximum Element: 9
+// Second Maximum Element: 9
+
+// since the first two elements are equal (9, 9), smax is set to 9 too
+
+
+// --------------------------------------------------------------------------------------------
+
+
+
+
+
+// #include<iostream>
+// using namespace std;
+
+// int main() {
+//     int arr[] = {9, 9, 1, 2, 4, 6, 6, 5, 0};
+//     int size = sizeof(arr) / sizeof(arr[0]);
+
+//     if (size < 2) {
+//         cout << "Array must have at least two elements." << endl;
+//         return 0;
+//     }
+
+//     int max = arr[0];
+//     int smax = -1; // or INT_MIN if negative numbers allowed
+
+//     // First pass: find max
+//     for (int i = 1; i < size; i++) {
+//         if (arr[i] > max) {
+//             max = arr[i];
+//         }
+//     }
+
+//     // Second pass: find largest element less than max
+//     for (int i = 0; i < size; i++) {
+//         if (arr[i] < max) {
+//             if (smax == -1 || arr[i] > smax) {
+//                 smax = arr[i];
+//             }
+//         }
+//     }
+
+//     cout << "Maximum Element: " << max << endl;
+//     if (smax != -1)
+//         cout << "Second Maximum Element: " << smax << endl;
+//     else
+//         cout << "No second maximum (all elements are equal)." << endl;
+
+//     return 0;
+// }
+
+
+
+
+
+//-------------------------------------------------------------------------------------------------

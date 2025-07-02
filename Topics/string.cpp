@@ -19,11 +19,7 @@
 
 
 
-
-
 //----------------------------------------------------------------------------------------------------------
-
-
 
 
 
@@ -57,7 +53,7 @@ void reverse(char s[], int n){
 
 //To lowercase the uppercase
 char tolowercase (char ch){
-    if(ch>='a' && ch<='z'){
+    if((ch>='a' && ch<='z')||(ch>='0' && ch<='9')){
         return ch;
     }
     else{
@@ -65,6 +61,16 @@ char tolowercase (char ch){
         return temp;
     }
 }
+
+//--------------------------------------------------------
+
+// ✅ Use the standard library:
+
+// #include <cctype>
+
+// temp[j] = tolower(temp[j]);
+
+//--------------------------------------------------------
 
 
 // //Check Palindrome  (where small and capital letters are treated differently)
@@ -103,6 +109,69 @@ bool palindrome(char s[], int n){
 return true;
 }
 
+//-----------------------------------------------------------------------------------------------------------------------
+
+//Valid Palindrome
+
+// ✅ Checking if a string is a valid palindrome, ignoring non-alphanumeric characters and case.
+
+
+// 1.Filter valid characters into a temp string.
+
+// 2.Convert to lowercase.
+
+// 3.Check if temp is a palindrome using checkpalindrome.
+
+
+
+//Valid character
+bool valid(char ch){
+
+    if((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >= '0' && ch <= '9')){
+        return 1;
+    }
+        return 0;
+}
+
+bool checkpalindrome(string s){
+
+    int start=0;
+    int end=s.length()-1;
+
+    while(start<=end){
+        if((s[start])==(s[end])){
+            start++;
+            end--;
+        }
+        else{
+            return false;
+        }
+    }
+return true;
+}
+
+
+//New temp string to store the valid character string only
+
+bool palindrome(string s){
+
+    string temp ="";
+
+    for(int i=0 ; i<s.length() ; i++){
+        if (valid (s[i])){
+           temp.push_back(s[i]);
+    }
+  }
+    for(int j=0 ; j<temp.length() ; j++){
+
+        temp[j]=tolowercase(temp[j]);
+
+    }
+    return checkpalindrome(temp);
+}
+
+
+
 int main(){
 
 char name[100];
@@ -120,12 +189,76 @@ reverse(name, length);
 cout<<"\nReversed string\n";
     cout<<name;
 
-cout<<"\nPalindrome string\n";
+cout<<"\nPalindrome char array\n";
 cout<< palindrome(name, length);
 
-// cout<<"\nTo lowercase character\n";
-// char t= tolowercase('C');
-// cout<<t;
+string st="A man, a plan, a canal: Panama";
+cout<<"\nValid Palindrome string \n";
+cout<< palindrome(st)<<endl;
+
+string s;
+    cout << "Enter a string: ";
+
+    //If you previously used
+    // cin leaves a \n (newline) in the input buffer after reading input.
+
+// When getline(cin, s) is called:
+
+// It immediately reads this leftover \n as the end of input.
+
+// s becomes an empty string "".
+
+//Otherwise, if not do so ignore , then it won't take input as it is getting '\0'
+
+    cin.ignore();               // <-- FIX: clear leftover newline
+    getline(cin, s);
+
+    if (palindrome(s)) {
+        cout << "Valid Palindrome" << endl;
+    } else {
+        cout << "Not a Palindrome" << endl;
+    }
+
+cout<<"\nTo lowercase character\n";
+char t= tolowercase('C');
+cout<<t;
+
+}
+
+//----------------------------------------------------------------------------------------------------------------
 
 
-}    
+// #include<iostream>
+// #include<string>
+
+// using namespace std;
+
+// int main(){
+// std::string S("Hey");
+// S.push_back('\0');                                  //If you explicitly add null character then it terminates on encountering it.
+// S.append("Jude");
+
+// for(int i = 0; S[i] != '\0'; ++i)
+//     std::cout << S[i];
+
+// cout<<"\n";
+
+// std::string Str("Hey");
+// Str.append("Jude");                                                   //But internally null character do not terminate the string.
+
+// for(int i = 0; Str[i] != '\0'; ++i)
+//     std::cout << Str[i];
+
+// }    
+
+//--------------------------------------------------------------------------------------
+
+//Fore more reference to string visit: https://cplusplus.com/reference/string/string/
+
+//--------------------------------------------------------------------------------------
+
+
+
+
+
+

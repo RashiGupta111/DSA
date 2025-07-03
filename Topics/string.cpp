@@ -171,6 +171,44 @@ bool palindrome(string s){
 }
 
 
+char getmaxoccurchar(string s){
+    
+    int arr[26]={0};
+
+//Create an array of count of characters
+    for(int i=0;  i<s.length(); i++){
+
+        char ch=s[i];
+        int num=0;
+
+        // num=ch-'a';                               //Without if else use direct this, to optimize if all are in lowercase
+
+        if(ch>='a' && ch<='z'){
+            num=ch-'a';
+        }
+        else{
+            num=ch-'A';
+        }
+
+
+        arr[num]++;
+    }
+
+//Find maximum occurence character    
+    int maxi=-1;
+    int ans=0;
+    for(int i=0; i<26; i++){
+
+        if(maxi<arr[i]){
+            ans=i;
+            maxi=arr[i];
+        }
+    }
+
+return ans+'a';
+
+}
+
 
 int main(){
 
@@ -213,10 +251,13 @@ string s;
     cin.ignore();               // <-- FIX: clear leftover newline
     getline(cin, s);
 
+    char max = getmaxoccurchar(s);
+    cout<<"\nMaximum occuring character in string  "<<max;
+
     if (palindrome(s)) {
-        cout << "Valid Palindrome" << endl;
+        cout << "\nValid Palindrome" << endl;
     } else {
-        cout << "Not a Palindrome" << endl;
+        cout << "\nNot a Palindrome" << endl;
     }
 
 cout<<"\nTo lowercase character\n";
